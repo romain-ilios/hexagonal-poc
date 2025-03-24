@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/core/node_modules
+/vue/node_modules
+/next/node_modules
