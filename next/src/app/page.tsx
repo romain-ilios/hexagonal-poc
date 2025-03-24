@@ -1,12 +1,12 @@
 "use client";
 
-import styles from "./page.module.css";
+import { useTodosReact, type ITodo } from "@hexanext/core";
 import { useState } from "react";
-import { useTodos } from "@/model/todo/application/react/useTodos";
+import styles from "./page.module.css";
 
 export default function Home() {
   const [description, setDescription] = useState("");
-  const { todos, isLoading, addTodo, updateTodo, deleteTodo } = useTodos();
+  const { todos, isLoading, addTodo, updateTodo, deleteTodo } = useTodosReact();
 
   function handleAddTodo(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -31,11 +31,12 @@ export default function Home() {
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            placeholder="Add a new todo..."
           />
         </form>
         {isLoading && <p>Loading...</p>}
         <ul>
-          {todos.map((todo) => (
+          {todos.map((todo: ITodo) => (
             <li
               key={todo.id}
               style={{

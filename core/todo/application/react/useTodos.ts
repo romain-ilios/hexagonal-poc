@@ -1,12 +1,15 @@
-import { todoService, todoStore } from "@/model/serviceLocator";
 import { useEffect, useState } from "react";
-
-import { ITodoUpdateParams } from "../../domain/todo";
+import { todoService, todoStore } from "../../../serviceLocator";
+import type { ITodo, ITodoUpdateParams } from "../../domain/todo";
 
 export function useTodos() {
-  const [todos, setTodos] = useState(todoStore.getTodosSnapshot());
-  const [isLoading, setIsLoading] = useState(todoStore.getIsLoadingSnapshot());
-  const [error, setError] = useState(todoStore.getErrorSnapshot());
+  const [todos, setTodos] = useState<ITodo[]>(todoStore.getTodosSnapshot());
+  const [isLoading, setIsLoading] = useState<boolean>(
+    todoStore.getIsLoadingSnapshot()
+  );
+  const [error, setError] = useState<string | null>(
+    todoStore.getErrorSnapshot()
+  );
 
   useEffect(() => {
     const subscription = todoStore.getTodosObservable().subscribe(setTodos);

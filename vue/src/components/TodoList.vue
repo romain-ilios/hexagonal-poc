@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useTodos } from "@/model/todo/application/vue/useTodos";
+import { useTodosVue } from "@hexanext/core";
 
 const description = ref("");
-const { todos, isLoading, addTodo, updateTodo, deleteTodo } = useTodos();
+const { todos, isLoading, addTodo, updateTodo, deleteTodo } = useTodosVue();
 
 function handleAddTodo(e: Event) {
   e.preventDefault();
